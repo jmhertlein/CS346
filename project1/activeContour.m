@@ -13,6 +13,7 @@ im = rgb2gray(double(imread('objectsForActiveContours.png')));
 
 imshow(im)
 pause
+
 %parameters
 f = ; %the minimum fraction of points to change
 a = ; %continuity
