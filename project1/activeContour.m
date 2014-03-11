@@ -44,9 +44,9 @@ hold off; drawnow;
 cntPt = inf;
 while cntPt>f*N
     %your codes for iterative active contour
-    printf('Computing avg distanced\n');
+    %printf('Computing avg distanced\n');
     d = avgDist(X, Y);
-    printf('Computed avg distance... is %d\n', d);
+    %printf('Computed avg distance... is %d\n', d);
     for i = 1:N
         [nX,nY] = U(im, X(i), Y(i));
         leastEnergyAmt = inf;
@@ -60,7 +60,7 @@ while cntPt>f*N
                 leastEnergyIndex = neighbor;
             end
         end
-        printf('%d: (%d, %d) -> (%d, %d)\n', i, X(i), Y(i), nX(leastEnergyIndex), nY(leastEnergyIndex));
+        %printf('%d: (%d, %d) -> (%d, %d)\n', i, X(i), Y(i), nX(leastEnergyIndex), nY(leastEnergyIndex));
         X(i) = nX(leastEnergyIndex);
         Y(i) = nY(leastEnergyIndex);
 
