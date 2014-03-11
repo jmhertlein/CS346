@@ -12,7 +12,7 @@ im = rgb2gray(double(imread('objectsForActiveContours.png')));
 [Gmag, Gdir] = imgradient(im); %gmag is the one we want to use
 
 %parameters
-f = 1/5; %the minimum fraction of points to change
+f = 1/10; %the minimum fraction of points to change
 a = 10; %gradient weight in energy function
 b = .5; %continuity weight in energy function
 c = .5; %smoothness weight in energy function
@@ -42,7 +42,13 @@ hold off; drawnow;
 %pause
 
 cntPt = inf;
-while cntPt>f*N
+threshold = f*N;
+if (f*N) == 0
+    threshold = 1;
+end
+
+while cntPt>threshold
+    cntPt = 0;
     %your codes for iterative active contour
     %printf('Computing avg distanced\n');
     d = avgDist(X, Y);
@@ -61,8 +67,14 @@ while cntPt>f*N
             end
         end
         %printf('%d: (%d, %d) -> (%d, %d)\n', i, X(i), Y(i), nX(leastEnergyIndex), nY(leastEnergyIndex));
+        oldX = X(i);
+        oldY = Y(i);
         X(i) = nX(leastEnergyIndex);
         Y(i) = nY(leastEnergyIndex);
+
+        if oldY != Y(i) || oldX != X(i)
+            cntPt = cntPt + 1;
+        end
 
         %printf('G at %d: %f\n', i, Gmag(X(i), Y(i)));
     end
@@ -72,3 +84,9 @@ while cntPt>f*N
     %plot([Y; Y(1)], [X; X(1)], 'r-*');
     hold off; drawnow;
 end
+
+figure(2); clf; imshow(Gmag); hold on;
+plot([X; X(1)], [Y; Y(1)], 'r-*');
+hold off; drawnow;
+printf('Converged, press any key to terminate.');
+pause;

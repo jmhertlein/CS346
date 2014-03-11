@@ -1,45 +1,31 @@
-# Created by Octave 3.8.0, Mon Mar 10 23:46:55 2014 CDT <joshua@Domitian>
+# Created by Octave 3.8.0, Mon Mar 10 23:54:18 2014 CDT <joshua@Domitian>
 # name: x
 # type: matrix
-# rows: 16
+# rows: 9
 # columns: 1
- 233
- 199
- 187
- 180
- 180
- 179
- 182
- 210
- 225
- 263
- 291
- 294
- 296
- 297
- 300
- 300
+ 100
+ 126
+ 143
+ 138
+ 120
+ 88
+ 61
+ 61
+ 72
 
 
 # name: y
 # type: matrix
-# rows: 16
+# rows: 9
 # columns: 1
- 40
- 47
- 68
- 84
- 106
- 145
- 146
- 141
- 139
- 133
- 121
- 117
- 99
- 86
- 74
- 72
+ 45
+ 53
+ 82
+ 113
+ 136
+ 135
+ 111
+ 80
+ 59
 
 
