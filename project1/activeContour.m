@@ -64,7 +64,7 @@ while cntPt>f*N
         X(i) = nX(leastEnergyIndex);
         Y(i) = nY(leastEnergyIndex);
 
-        printf('G at %d: %f\n', i, Gmag(X(i), Y(i)));
+        %printf('G at %d: %f\n', i, Gmag(X(i), Y(i)));
     end
     %visualize the shrink process
     figure(2); clf; imshow(Gmag); hold on;
