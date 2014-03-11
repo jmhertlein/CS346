@@ -1,9 +1,9 @@
-function [Ec] = continuityEnergy(d, X, Y, curPoint)
+function [Ec] = continuityEnergy(d, x, y, u, v)
 %d is average dist between all points
 
 Ec = (d-abs(dist(
-                 X(curPoint),   Y(curPoint), 
-                 X(curPoint-1), Y(curPoint-1)
+                 x, y, 
+                 u, v
                 )
            )
      )^2

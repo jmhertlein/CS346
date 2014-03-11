@@ -1,3 +1,3 @@
-function d = dist(a, b)
+function d = dist(x, y, u, v)
 
-d = sqrt((b(1) - a(1))^2 + (b(2) - a(2))^2)
+d = sqrt((u - x)^2 + (v - y)^2)

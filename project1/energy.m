@@ -1,2 +1,8 @@
-function e = energy(a, b, c, point, X, Y, d, imGrad)
-e = a*gradientEnergy(imGrad, point(1), point(2), y) + b*continuityEnergy(d, X, Y, point) + c * smoothnessEnergy(X, Y, point);
+function e = energy(a, b, c, x, y, curPtNum, X, Y, d, imGrad)
+
+prev = curPtNum -1
+if prev == 0
+    prev = numel(X)
+end
+
+e = a*gradientEnergy(imGrad, x, y) + b*continuityEnergy(d, x, y, X(prev), Y(prev)) + c * smoothnessEnergy(X, Y, x, y, curPtNum);

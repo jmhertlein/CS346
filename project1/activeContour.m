@@ -29,6 +29,9 @@ else
     load('initPts2.mat','x','y');
 end
 
+X = x;
+Y = y;
+
 N = numel(x);
 
 %visualize the initial points
@@ -41,7 +44,24 @@ pause
 cntPt = inf;
 while cntPt>f*N
     %your codes for iterative active contour
+    d = avgDist(X, Y);
+    for i = 1:N
+        [nX,nY] = U(im, X(i), Y(i));
+        leastEnergyAmt = inf;
+        leastEnergyIndex = -1;
 
+        for neighbor = 1:numel(nX)
+            curEnergy = energy(a, b, c, nX(neighbor), nY(neighbor), i, X, Y, d, Gmag);
+            if curEnergy < leastEnergyAmt
+                leastEnergyAmt = curEnergy;
+                leastEnergyIndex = neighbor;
+            end
+        end
+
+        X(i) = nX(leastEnergyIndex);
+        Y(i) = nY(leastEnergyIndex);
+    end
+    
     %visualize the shrink process
     figure(2); clf; imshow(im); hold on;
     plot([x; x(1)], [y; y(1)], 'r-*');
