@@ -15,7 +15,7 @@ im = rgb2gray(double(imread('objectsForActiveContours.png')));
 f = 1/5; %the minimum fraction of points to change
 a = 10; %gradient weight in energy function
 b = .5; %continuity weight in energy function
-c = 1; %smoothness weight in energy function
+c = .5; %smoothness weight in energy function
 %and some other parameters you will use
 
 %initialization, save the points into mat files without manually choosing
