@@ -67,7 +67,7 @@ while cntPt>f*N
         printf('G at %d: %f\n', i, Gmag(X(i), Y(i)));
     end
     %visualize the shrink process
-    figure(2); clf; imshow(im); hold on;
+    figure(2); clf; imshow(Gmag); hold on;
     plot([X; X(1)], [Y; Y(1)], 'r-*');
     hold off; drawnow;
 end
