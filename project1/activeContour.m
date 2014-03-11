@@ -13,7 +13,7 @@ im = rgb2gray(double(imread('objectsForActiveContours.png')));
 
 %parameters
 f = 1/5; %the minimum fraction of points to change
-a = 1; %gradient weight in energy function
+a = 10; %gradient weight in energy function
 b = 1; %continuity weight in energy function
 c = 1; %smoothness weight in energy function
 %and some other parameters you will use
@@ -38,13 +38,15 @@ N = numel(x);
 hold on;
 plot([x; x(1)], [y; y(1)], 'r-*');
 hold off; drawnow;
-disp('Hit your keyboard to continue...');
-pause
+%disp('Hit your keyboard to continue...');
+%pause
 
 cntPt = inf;
 while cntPt>f*N
     %your codes for iterative active contour
+    printf('Computing avg distanced\n');
     d = avgDist(X, Y);
+    printf('Computed avg distance... is %d\n', d);
     for i = 1:N
         [nX,nY] = U(im, X(i), Y(i));
         leastEnergyAmt = inf;
@@ -52,18 +54,20 @@ while cntPt>f*N
 
         for neighbor = 1:numel(nX)
             curEnergy = energy(a, b, c, nX(neighbor), nY(neighbor), i, X, Y, d, Gmag);
+            %printf('Neighbor %d: (%d, %d): %f\n', neighbor, nX(neighbor), nY(neighbor), curEnergy);
             if curEnergy < leastEnergyAmt
                 leastEnergyAmt = curEnergy;
                 leastEnergyIndex = neighbor;
             end
         end
-
+        printf('%d: (%d, %d) -> (%d, %d)\n', i, X(i), Y(i), nX(leastEnergyIndex), nY(leastEnergyIndex));
         X(i) = nX(leastEnergyIndex);
         Y(i) = nY(leastEnergyIndex);
+
+        printf('G at %d: %f\n', i, Gmag(X(i), Y(i)));
     end
-    
     %visualize the shrink process
     figure(2); clf; imshow(im); hold on;
-    plot([x; x(1)], [y; y(1)], 'r-*');
+    plot([X; X(1)], [Y; Y(1)], 'r-*');
     hold off; drawnow;
 end

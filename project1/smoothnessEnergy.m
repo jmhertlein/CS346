@@ -7,7 +7,7 @@ if prev == 0
 end
 
 if next > numel(X)
-    next = 0;
+    next = 1;
 end
 
 Es = curvature(X(prev), Y(prev),
