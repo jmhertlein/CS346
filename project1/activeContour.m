@@ -21,7 +21,7 @@ c = 1; %smoothness weight in energy function
 %initialization, save the points into mat files without manually choosing
 %points everytime when you develop/debug your codes
 figure(1); imshow(im); 
-if 0
+if 1
     [x, y] = ginput; %hit enter to finishing mouse click
     x = round(x); y = round(y);
      save('initPts2.mat','x','y');
@@ -69,5 +69,6 @@ while cntPt>f*N
     %visualize the shrink process
     figure(2); clf; imshow(Gmag); hold on;
     plot([X; X(1)], [Y; Y(1)], 'r-*');
+    %plot([Y; Y(1)], [X; X(1)], 'r-*');
     hold off; drawnow;
 end
