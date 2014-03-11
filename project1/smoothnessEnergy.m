@@ -1,5 +1,5 @@
-function Es = smoothnessEnergy(points, curPt)
-Es = curvature(points(curPt-1, 1), points(curPt-1, 2),
-               points(curPt, 1), points(curPt, 2),
-               points(curPt+1, 1), points(curPt+1, 2));
+function Es = smoothnessEnergy(X, Y, curPt)
+Es = curvature(X(curPt-1), Y(curPt-1),
+               X(curPt), Y(curPt),
+               X(curPt+1), Y(curPt+1));
 
