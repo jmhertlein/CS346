@@ -38,8 +38,8 @@ N = numel(x);
 hold on;
 plot([x; x(1)], [y; y(1)], 'r-*');
 hold off; drawnow;
-%disp('Hit your keyboard to continue...');
-%pause
+disp('Hit your keyboard to continue...');
+pause
 
 cntPt = inf;
 threshold = f*N;

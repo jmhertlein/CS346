@@ -1,0 +1,29 @@
+# Created by Octave 3.8.0, Tue Mar 11 10:08:00 2014 CDT <joshua@Domitian>
+# name: x
+# type: matrix
+# rows: 8
+# columns: 1
+ 384
+ 407
+ 438
+ 417
+ 415
+ 353
+ 342
+ 336
+
+
+# name: y
+# type: matrix
+# rows: 8
+# columns: 1
+ 35
+ 59
+ 78
+ 102
+ 138
+ 138
+ 105
+ 61
+
+
