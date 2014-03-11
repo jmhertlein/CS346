@@ -21,7 +21,7 @@ c = .5; %smoothness weight in energy function
 %initialization, save the points into mat files without manually choosing
 %points everytime when you develop/debug your codes
 figure(1); imshow(im); 
-if 1
+if 0
     [x, y] = ginput; %hit enter to finishing mouse click
     x = round(x); y = round(y);
      save('initPts2.mat','x','y');
@@ -44,10 +44,12 @@ hold off; drawnow;
 cntPt = inf;
 threshold = f*N;
 if (f*N) == 0
-    threshold = 1;
+    threshold = (1/3)*N;
 end
 
-while cntPt>threshold
+maxIterations = 250;
+iterations = 0;
+while cntPt>threshold && iterations < maxIterations
     cntPt = 0;
     %your codes for iterative active contour
     %printf('Computing avg distanced\n');
@@ -83,10 +85,13 @@ while cntPt>threshold
     plot([X; X(1)], [Y; Y(1)], 'r-*');
     %plot([Y; Y(1)], [X; X(1)], 'r-*');
     hold off; drawnow;
+    iterations = iterations + 1;
 end
+
+%printf('Terminated after %d iterations\n', iterations);
 
 figure(2); clf; imshow(Gmag); hold on;
 plot([X; X(1)], [Y; Y(1)], 'r-*');
 hold off; drawnow;
-printf('Converged, press any key to terminate.');
+printf('Converged, press any key to terminate.\n');
 pause;
