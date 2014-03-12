@@ -111,5 +111,5 @@ figure(2); clf; imshow(Gmag); hold on;
 plot([X; X(1)], [Y; Y(1)], 'r-*');
 hold off; drawnow;
 iterations
-printf('Converged, press any key to terminate.\n');
+fprintf('Converged, press any key to terminate.\n');
 pause;
