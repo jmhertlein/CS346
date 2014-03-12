@@ -10,6 +10,12 @@ for i= 1:numel(X)
     if(Y(i) > maxY)
         Y(i) = maxY;
     end
+    if(X(i) < 1)
+        X(i) = 1;
+    end
+    if(Y(i) < 1)
+        Y(i) = 1;
+    end
 end
 
 
