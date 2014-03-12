@@ -13,9 +13,10 @@ im = rgb2gray(double(imread('objectsForActiveContours.png')));
 
 %parameters
 f = 1/10; %the minimum fraction of points to change
-a = 10; %gradient weight in energy function
-b = .5; %continuity weight in energy function
-c = .5; %smoothness weight in energy function
+a = 20; %gradient weight in energy function
+b = 2; %continuity weight in energy function
+c = 7; %smoothness weight in energy function
+munges = 5;
 %and some other parameters you will use
 
 %initialization, save the points into mat files without manually choosing
@@ -32,6 +33,7 @@ end
 X = x;
 Y = y;
 
+
 N = numel(x);
 
 %visualize the initial points
@@ -39,6 +41,21 @@ hold on;
 plot([x; x(1)], [y; y(1)], 'r-*');
 hold off; drawnow;
 disp('Hit your keyboard to continue...');
+pause
+
+X
+Y
+for i = 1:munges
+    [X,Y] = pointMunge(X, Y);
+end
+X
+Y
+N = numel(X);
+
+hold on;
+plot([X; X(1)], [Y; Y(1)], 'r-*');
+hold off; drawnow;
+disp('Points interpolated. Hit your keyboard to continue...');
 pause
 
 cntPt = inf;
@@ -93,5 +110,6 @@ end
 figure(2); clf; imshow(Gmag); hold on;
 plot([X; X(1)], [Y; Y(1)], 'r-*');
 hold off; drawnow;
+iterations
 printf('Converged, press any key to terminate.\n');
 pause;
