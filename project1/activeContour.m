@@ -22,7 +22,7 @@ munges = 5;
 %initialization, save the points into mat files without manually choosing
 %points everytime when you develop/debug your codes
 figure(1); imshow(im); 
-if 0
+if 1
     [x, y] = ginput; %hit enter to finishing mouse click
     x = round(x); y = round(y);
      save('initPts2.mat','x','y');
