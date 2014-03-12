@@ -15,7 +15,5 @@ if next > numel(X)
     next = 1;
 end
 
-Es = curvature(X(prev), Y(prev),
-               x, y,
-               X(next), Y(next));
+Es = curvature(X(prev), Y(prev),x, y, X(next), Y(next));
 

@@ -1,4 +1,4 @@
-pkg load image;
+%pkg load image;
 clc; %clear the command window 
 close all; %close all figure windows
 clear all; %clear all variables in the workspace
@@ -91,7 +91,7 @@ while cntPt>threshold && iterations < maxIterations
         X(i) = nX(leastEnergyIndex);
         Y(i) = nY(leastEnergyIndex);
 
-        if oldY != Y(i) || oldX != X(i)
+        if oldY ~= Y(i) || oldX ~= X(i)
             cntPt = cntPt + 1;
         end
 
