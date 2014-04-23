@@ -1,6 +1,7 @@
 %plane warp demo using homographies
 %Zhaozheng Yin, Computer Science, MST
 %Spring 2014
+pkg load image;
 
 clear all; clc; close all;
 
@@ -59,6 +60,8 @@ end
 %Step 2: compute homography (from source to dest coord system)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Method 1. compute h assuming h_33 = 1
+h = h33(xpts, ypts, xprimes, yprimes);
+
 
 %Method 2. compute h with constraint ||h|| = 1
 
