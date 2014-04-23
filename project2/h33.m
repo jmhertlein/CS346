@@ -1,4 +1,5 @@
 % Function to compute h assuming h_33 = 1
+% given n pairs of corresponding points, computs the h matrix that warps from source to destination
 
 % x, y: the x and y coords of the correlation points in the source image
 % X, Y: the x and y coords of the correlation points in the destination image
