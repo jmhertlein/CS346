@@ -71,7 +71,7 @@ h_method2 = transpose(reshape(h_1, 3, 3));
 % try forward and backward warping (nearest neighbor and bilinear
 % interpolation)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-H=h_method1
+H=h_method2
 [srcnrows, srcncols, srcnlayers] = size(source)
 [destnrows, destncols, destnlayers] = size(dest)
 input('type something\n');
