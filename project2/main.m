@@ -12,14 +12,14 @@ dest = imread('dest.jpg');
 [destnr,destnc,destnb] = size(dest)
 [srcnr,srcnc,srcnb] = size(source)
 input('continue');
-figure(1); imshow(source,[]); title('source');
-figure(2); imshow(dest,[]); title('destination');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Step 1: manually select correpsonding points
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fLoad = true;
 if ~fLoad    
+    figure(1); imshow(source,[]); title('source');
+    figure(2); imshow(dest,[]); title('destination');
     %click points in source
     figure(1);
     [xpts,ypts] = ginput;
@@ -71,7 +71,7 @@ h_method2 = transpose(reshape(h_1, 3, 3));
 % try forward and backward warping (nearest neighbor and bilinear
 % interpolation)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-H=h_method1
+H=h_method2
 [srcnrows, srcncols, srcnlayers] = size(source)
 [destnrows, destncols, destnlayers] = size(dest)
 
