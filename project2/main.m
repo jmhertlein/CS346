@@ -60,11 +60,10 @@ end
 %Step 2: compute homography (from source to dest coord system)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Method 1. compute h assuming h_33 = 1
-h = h33(xpts, ypts, xprimes, yprimes);
-
+h_33 = h33(xpts, ypts, xprimes, yprimes);
 
 %Method 2. compute h with constraint ||h|| = 1
-
+h_1 = h1(xpts, ypts, xprimes, yprimes);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Step 3: warp source image onto dest coord system
