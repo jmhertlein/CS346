@@ -24,4 +24,10 @@ for i = 1:numel(x)
     A(i*2, 7) = (-1)*(x(i)*Y(i));
     A(i*2, 8) = (-1)*(y(i)*Y(i));
 end
-    
+
+for i=1:numel(x)
+    b(i*2-1) = X(i);
+    b(i*2) = Y(i);
+end
+b = reshape(b, [], 1);
+h = A \ b;
