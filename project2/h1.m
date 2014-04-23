@@ -26,10 +26,6 @@ for i = 1:numel(x)
     A(i*2, 8) = (-1)*(y(i)*Y(i));
     A(i*2, 9) = (-1)*Y(i);
 end
-% I officially don't remember anything from math 206
-%[U, D, Vt] = svd(transpose(A)*A);
-%[U, D, Vt] = svd(A);
-%U
-%D
-%Vt
-%transpose(Vt)
+[U, D, Vt] = svd(A);
+[c,i] = min(diag(D));
+h = transpose(Vt)(:,i);

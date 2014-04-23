@@ -5,6 +5,7 @@
 % X, Y: the x and y coords of the correlation points in the destination image
 function h = h33(x, y, X, Y)
 
+A = zeros(2*numel(x), 8);
 for i = 1:numel(x)
     A(i*2-1, 1) = x(i);
     A(i*2-1, 2) = y(i);
