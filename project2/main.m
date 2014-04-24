@@ -60,5 +60,5 @@ h_method2 = transpose(reshape(h_1, 3, 3));
 % interpolation)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 H=h_method2
-figure; imshow(uint8(backwards(source, dest, H)));
+figure; imshow(uint8(back_nearest(source, dest, H)));
 input('done');
