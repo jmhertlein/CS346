@@ -51,10 +51,12 @@ for row = 1+hwidth:size(left,1)-hwidth %loop on each row except top
   % use DP on DSI to find min-cost path
   [costs, moves] = dpPath(DSI, OCC_COST, DSI_BAND_MAX);
 
+  DSI = DSI * 128; % scale DSI so we can show the traceback
+
   % back-trace & compute disparity
   [r, c] = size(moves);
   while(r >= 1 && c >= 1)
-    DSI(r, c) = 255;
+    DSI(r, c) = 255; % highlight our path in white
     if(moves(r, c) == 1)
       rebuilt(row, c) = left(row, c);
       disparity(row, c) = c - r;
@@ -64,11 +66,12 @@ for row = 1+hwidth:size(left,1)-hwidth %loop on each row except top
       r = r - 1;
     else
       rebuilt(row, c) = 0;
-      disparity(row, c) = 0;
+      disparity(row, c) = 0; 
       c = c - 1;
     end
   end
-  imshow(uint8(rebuilt));
+  %imshow(uint8(rebuilt));
+  imshow(uint8(DSI));
   drawnow;
 end
 
@@ -77,5 +80,21 @@ input('rebuilt...');
 
 dispScalar = 255 / max(max(disparity));
 imshow(uint8(disparity * dispScalar));
-input('disparity...');
+input('disparity (unfilled)...');
+
 % fill in occlusion
+[disprows, dispcols] = size(disparity);
+for row = 1:disprows
+  lastValid = 0;
+  for col = 1:dispcols
+    if(disparity(row, col) == 0)
+      disparity(row, col) = lastValid;
+    else
+      lastValid = disparity(row, col);
+    end
+  end
+end
+
+dispScalar = 255 / max(max(disparity));
+imshow(uint8(disparity * dispScalar));
+input('disparity (filled)...');
