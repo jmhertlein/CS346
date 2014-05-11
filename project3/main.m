@@ -15,18 +15,22 @@ EXIT_AFTER_SHOW = 0;
 left = rgb2gray(imread('conesLeft.ppm'));
 right = rgb2gray(imread('conesRight.ppm'));
 
+
+
 [leftnr,leftnc,leftnl] = size(left);
 [rightnr,rightnc,rightnl] = size(right);
-
+rebuilt = zeros(leftnr, leftnc);
+disparity = zeros(leftnr, leftnc);
 width = 5;
 hwidth = round((width - 1) /2); %patch size for NCC matching
 
 nrows = leftnr - 2*hwidth; 
 ncols = rightnr - 2*hwidth;
 
+
 % for each row
 for row = 1+hwidth:size(left,1)-hwidth %loop on each row except top
-
+  row
   % compute DSI using (1-NCC)
   lPatches = im2col(left(row-hwidth:row+hwidth,:),[width width]);
   rPatches = im2col(right(row-hwidth:row+hwidth,:),[width width]);
@@ -47,25 +51,31 @@ for row = 1+hwidth:size(left,1)-hwidth %loop on each row except top
   % use DP on DSI to find min-cost path
   [costs, moves] = dpPath(DSI, OCC_COST, DSI_BAND_MAX);
 
-
   % back-trace & compute disparity
-  [row, col] = size(moves);
-  while(row >= 1 && col >= 1)
-    DSI(row, col) = 255;
-    if(moves(row, col) == 1)
-      row = row - 1;
-      col = col - 1;
-    elseif (moves(row,col) == 2)
-      row = row - 1;
+  [r, c] = size(moves);
+  while(r >= 1 && c >= 1)
+    DSI(r, c) = 255;
+    if(moves(r, c) == 1)
+      rebuilt(row, c) = left(row, c);
+      disparity(row, c) = c - r;
+      r = r - 1;
+      c = c - 1;
+    elseif (moves(r,c) == 2)
+      r = r - 1;
     else
-      col = col - 1;
+      rebuilt(row, c) = 0;
+      disparity(row, c) = 0;
+      c = c - 1;
     end
   end
-
-  imshow(uint8(DSI * 128));
-  input('');
-  exit
-  
+  imshow(uint8(rebuilt));
+  drawnow;
 end
 
+imshow(uint8(rebuilt));
+input('rebuilt...');
+
+dispScalar = 255 / max(max(disparity));
+imshow(uint8(disparity * dispScalar));
+input('disparity...');
 % fill in occlusion

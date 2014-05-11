@@ -1,6 +1,6 @@
 function [costs, moves] = dpPath(DSI, occCost, max_DSI)
 
-[rows, cols] = size(DSI)
+[rows, cols] = size(DSI);
 
 costs = inf(rows, cols);
 moves = zeros(rows, cols);
