@@ -12,9 +12,11 @@ SHOW_I = 1;
 EXIT_AFTER_SHOW = 0;
 
 % read source and dest images
-left = rgb2gray(imread('conesLeft.ppm'));
-right = rgb2gray(imread('conesRight.ppm'));
+%left = rgb2gray(imread('conesLeft.ppm'));
+%right = rgb2gray(imread('conesRight.ppm'));
 
+left = rgb2gray(imread('my-left-cropped.jpg'));
+right = rgb2gray(imread('my-right-cropped.jpg'));
 
 
 [leftnr,leftnc,leftnl] = size(left);
