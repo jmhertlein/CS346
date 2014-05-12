@@ -1,6 +1,3 @@
-pkg load image;
-pkg load miscellaneous;
-
 clear all; clc; close all;
 
 PATCH_SIZE = 10;
@@ -12,11 +9,11 @@ SHOW_I = 1;
 EXIT_AFTER_SHOW = 0;
 
 % read source and dest images
-%left = rgb2gray(imread('conesLeft.ppm'));
-%right = rgb2gray(imread('conesRight.ppm'));
+left = rgb2gray(imread('conesLeft.ppm'));
+right = rgb2gray(imread('conesRight.ppm'));
 
-left = rgb2gray(imread('my-left-cropped.jpg'));
-right = rgb2gray(imread('my-right-cropped.jpg'));
+%left = rgb2gray(imread('my-left-cropped.jpg'));
+%right = rgb2gray(imread('my-right-cropped.jpg'));
 
 
 [leftnr,leftnc,leftnl] = size(left);
@@ -36,8 +33,8 @@ for row = 1+hwidth:size(left,1)-hwidth %loop on each row except top
   % compute DSI using (1-NCC)
   lPatches = im2col(left(row-hwidth:row+hwidth,:),[width width]);
   rPatches = im2col(right(row-hwidth:row+hwidth,:),[width width]);
-  lNorm= normc(double(lPatches - ones(width^2,1) * mean(lPatches)));
-  rNorm= normc(double(rPatches - ones(width^2,1) * mean(rPatches)));
+  lNorm= normc(double(lPatches) - ones(width^2,1) * mean(lPatches));
+  rNorm= normc(double(rPatches) - ones(width^2,1) * mean(rPatches));
   DSI = 1 - (rNorm' * lNorm);
 
   % Optionally show a DSI and exit
